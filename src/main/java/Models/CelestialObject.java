@@ -15,4 +15,8 @@ public abstract class CelestialObject {
         this.PeriodOfCirculation = periodOfCirculation;
         this.PeriodOfRotation = periodOfRotation;
     }
+
+    public void SetPointOfCirculation(Coords coords){
+        this.PointOfCirculation = coords;
+    }
 }

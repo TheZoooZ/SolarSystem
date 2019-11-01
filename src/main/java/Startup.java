@@ -10,13 +10,13 @@ public class Startup {
         initializeWindow();
     }
 
-    private static void initializeWindow(){
+    private static void initializeWindow() {
         GLProfile.initSingleton();
         GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
 
         window = GLWindow.create(capabilities);
-        window.setSize(640,300);
+        window.setSize(640, 300);
         window.setResizable(false);
         window.addGLEventListener(new Listener());
 
