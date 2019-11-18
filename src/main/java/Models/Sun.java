@@ -5,6 +5,6 @@ public class Sun extends CelestialObject {
         super(coords, angularVelocity, periodOfCirculation, periodOfRotation);
 
         this.Colour = new Colour(255,233,0);
-        this.Diameter = 1000;
+        this.Diameter = 100;
     }
 }

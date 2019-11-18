@@ -16,7 +16,7 @@ public class Startup {
         GLCapabilities capabilities = new GLCapabilities(profile);
 
         window = GLWindow.create(capabilities);
-        window.setSize(640, 300);
+        window.setSize(Constants.WindowHeight, Constants.WindowHeight);
         window.setResizable(false);
         window.addGLEventListener(new Listener());
 

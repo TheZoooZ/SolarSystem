@@ -1,10 +1,10 @@
 package Models;
 
 public class Coords {
-    public double X;
-    public double Y;
+    public int X;
+    public int Y;
 
-    public Coords(double x, double y) {
+    public Coords(int x, int y) {
         this.X = x;
         this.Y = y;
     }
