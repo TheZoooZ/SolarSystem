@@ -5,6 +5,6 @@ public class Earth extends CelestialObject {
         super(coords, angularVelocity, periodOfCirculation, periodOfRotation);
 
         this.Diameter = 10;
-        this.Colour = new Colour(15, 196, 216);
+        this.Colour = new Colour(0, 191, 255);
     }
 }
