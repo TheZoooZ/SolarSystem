@@ -23,7 +23,6 @@ public class Startup {
         animateCanvas();
     }
 
-
     private static void initializeCanvas() {
         GLProfile.initSingleton();
         profile = GLProfile.get(GLProfile.GL2);
@@ -44,8 +43,7 @@ public class Startup {
     }
 
     private static void addSwingObjects() {
-        frame.add(JFrameObjects.AngleVelocitySlider);
-        frame.add(JFrameObjects.RangeSlider);
+        JFrameObjects.addToolbars(frame);
     }
 
     private static void wrapCanvasToSwingWindow() {
