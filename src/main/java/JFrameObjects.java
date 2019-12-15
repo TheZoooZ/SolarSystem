@@ -1,29 +1,32 @@
-import com.sun.media.sound.SF2SoundbankReader;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class JFrameObjects {
-    public static JLabel AngleVelocityLabel;
+    public static JLabel TimeOfCirculationLabel;
     public static JLabel RangeLabel;
-    public static JSlider AngleVelocitySlider = setSlider(0,0);
-    public static JSlider RangeSlider = setSlider(0,50);
+    public static JSlider TimeOfCirculationSlider;
+    public static JSlider RangeSlider;
 
-    public static void addToolbars(JFrame frame){
-        AngleVelocityLabel = setLabel(0,0, "Angle Velocity");
-        AngleVelocitySlider = setSlider(0,30);
-        RangeLabel = setLabel(0,80,"Range");
-        RangeSlider = setSlider(0,110);
+    public static void addToolbars(JFrame frame) {
+        TimeOfCirculationSlider = setSlider(0, 30);
+        RangeSlider = setSlider(0, 110);
 
-        frame.add(AngleVelocitySlider);
-        frame.add(AngleVelocityLabel);
+        RangeSlider.setMinimum(100);
+        RangeSlider.setMaximum(300);
+
+        TimeOfCirculationSlider.setMinimum(1);
+        TimeOfCirculationSlider.setMaximum(10);
+        TimeOfCirculationLabel = setLabel(0, 0, "ToC " + TimeOfCirculationSlider.getValue());
+        RangeLabel = setLabel(0, 80, "Range " + RangeSlider.getValue() * 100 + " km");
+
+        frame.add(TimeOfCirculationSlider);
+        frame.add(TimeOfCirculationLabel);
         frame.add(RangeSlider);
         frame.add(RangeLabel);
     }
 
-    private static JLabel setLabel(int x, int y, String text){
+    private static JLabel setLabel(int x, int y, String text) {
         JLabel label = new JLabel(text);
-        label.setBounds(x,y,100,30);
+        label.setBounds(x, y, 100, 30);
         return label;
     }
 
@@ -33,9 +36,9 @@ public class JFrameObjects {
         return slider;
     }
 
-    private static JButton setButton(int x, int y){
+    private static JButton setButton(int x, int y) {
         JButton button = new JButton("Hello World");
-        button.setBounds(x,y,100,50);
+        button.setBounds(x, y, 100, 50);
         return button;
     }
 }

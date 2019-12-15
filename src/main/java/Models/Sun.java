@@ -1,10 +1,12 @@
 package Models;
 
 public class Sun extends CelestialObject {
-    public Sun(Models.Coords coords, double angularVelocity, int periodOfCirculation, int periodOfRotation) {
-        super(coords, angularVelocity, periodOfCirculation, periodOfRotation);
+    public Sun(double angularVelocity, int periodOfCirculation, int periodOfRotation) {
+        super(angularVelocity, periodOfCirculation, periodOfRotation);
 
-        this.Colour = new Colour(255,233,0);
-        this.Diameter = 100;
+        this.Color = new Color(255, 233, 0);
+        this.Radius = 50;
+        this.setStartCoords(0, 0, 0);
+        this.Coords = this.getStartCoords();
     }
 }

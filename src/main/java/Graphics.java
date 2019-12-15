@@ -1,38 +1,52 @@
 import Models.CelestialObject;
-import Models.Coords;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.GLUquadric;
 
 public class Graphics {
-    private int angle = 0;
+    private static double angle = 0;
 
-    public static void drawCelestialObject(GL2 gl, CelestialObject object) {
-        gl.glColor3f(object.Colour.Red, object.Colour.Green, object.Colour.Blue);
-        gl.glBegin(GL2.GL_POLYGON);
-        drawPolygon(gl, object);
+    public static void drawCentralPoint(GL2 gl) {
+        gl.glBegin(GL2.GL_POINT);
+        gl.glVertex3d(0, 0, 0);
         gl.glEnd();
     }
 
+    public static void drawSphere(GL2 gl2, GLU glu, CelestialObject object) {
+        final int slices = 128;
+        final int stacks = 128;
+
+        gl2.glColor3f(object.Color.Red, object.Color.Green, object.Color.Blue);
+        GLUquadric sphere = glu.gluNewQuadric();
+
+        glu.gluQuadricDrawStyle(sphere, GLU.GLU_FILL);
+        glu.gluQuadricNormals(sphere, GLU.GLU_FLAT);
+        glu.gluQuadricOrientation(sphere, GLU.GLU_OUTSIDE);
+
+        glu.gluSphere(sphere, object.Radius, slices, stacks);
+
+        glu.gluDeleteQuadric(sphere);
+    }
+
     public static void drawBackground(GLAutoDrawable glAutoDrawable) {
-        GL2[] dots = new GL2[Constants.NumberOfPoints];
-        for (int i = 0; i < Constants.NumberOfPoints; i++) {
-            dots[i] = glAutoDrawable.getGL().getGL2();
-            dots[i].glColor3f(255, 250, 250);
-            dots[i].glBegin(GL2.GL_POINTS);
-            dots[i].glVertex2d(Constants.coords[i].X, Constants.coords[i].Y);
-            dots[i].glEnd();
+        GL2[] dots1 = new GL2[Globals.NumberOfPoints];
+
+        for (int i = 0; i < Globals.NumberOfPoints; i++) {
+            dots1[i] = glAutoDrawable.getGL().getGL2();
+            dots1[i].glColor3f(255, 250, 250);
+            dots1[i].glBegin(GL2.GL_POINTS);
+            dots1[i].glVertex3d(Globals.starsCoords[i].X, Globals.starsCoords[i].Y, Globals.starsCoords[i].Z);
+            dots1[i].glEnd();
         }
     }
 
-    private static void drawPolygon(GL2 gl, CelestialObject object) {
-        double angle;
-        int numVertices = 50;
-        double angleIncrement = 2 * Math.PI / numVertices;
-        for (int i = 0; i < numVertices; i++) {
-            angle = i * angleIncrement;
-            double x = object.Coords.X + (object.Diameter / 2) * Math.cos(angle);
-            double y = object.Coords.Y + (object.Diameter / 2) * Math.sin(angle);
-            gl.glVertex2f((float) x, (float) y);
-        }
+    public static void rotate(CelestialObject object, GL2 gl) {
+        double range = JFrameObjects.RangeSlider.getValue();
+        object.Coords.X = (int) (range * Math.cos(angle));
+        object.Coords.Y = (int) (range * Math.sin(angle));
+        object.Coords.Z = 0;
+        gl.glTranslatef(object.Coords.X, object.Coords.Y, object.Coords.Z);
+        angle = (angle + 0.15 * 1 / JFrameObjects.TimeOfCirculationSlider.getValue()) % 360;
     }
 }

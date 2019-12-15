@@ -1,22 +1,26 @@
 package Models;
 
 public abstract class CelestialObject {
+    private Coords StartCoords;
+
     public Coords Coords;
     public double AngularVelocity;
     public int PeriodOfCirculation;
     public int PeriodOfRotation;
-    public int Diameter;
-    public Colour Colour;
-    private Coords PointOfCirculation;
+    public int Radius;
+    public Color Color; //To delete in the future :)
 
-    public CelestialObject(Coords coords, double angularVelocity, int periodOfCirculation, int periodOfRotation) {
-        this.Coords = coords;
+    public CelestialObject(double angularVelocity, int periodOfCirculation, int periodOfRotation) {
         this.AngularVelocity = angularVelocity;
         this.PeriodOfCirculation = periodOfCirculation;
         this.PeriodOfRotation = periodOfRotation;
     }
 
-    public void SetPointOfCirculation(Coords coords){
-        this.PointOfCirculation = coords;
+    public void setStartCoords(int x, int y, int z) {
+        StartCoords = new Coords(x, y, z);
+    }
+
+    public Coords getStartCoords() {
+        return StartCoords;
     }
 }

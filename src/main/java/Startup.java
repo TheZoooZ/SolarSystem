@@ -53,8 +53,9 @@ public class Startup {
     }
 
     private static void animateCanvas() {
-        glCanvas.addGLEventListener(new Listener());
-        animator = new FPSAnimator(glCanvas,30);
+        glCanvas.addGLEventListener(new EventListener());
+        glCanvas.addMouseMotionListener(new MouseInput());
+        animator = new FPSAnimator(glCanvas,60);
         animator.start();
     }
 }
