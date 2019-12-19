@@ -10,7 +10,7 @@ public class EventListener implements GLEventListener {
     public static GL2 centralPoint;
 
     private CelestialObject sun = new Sun(0, 0, 0);
-    private CelestialObject earth = new Earth(0, 0, 0);
+    private CelestialObject earth = new Earth(0, 3, 0);
     private GLU gluSun;
     private GLU gluEarth;
     private GL2 glSun;
@@ -22,6 +22,7 @@ public class EventListener implements GLEventListener {
         gluEarth = new GLU();
         glSun = glAutoDrawable.getGL().getGL2();
         glEarth = glAutoDrawable.getGL().getGL2();
+        JFrameObjects.SetDefaultTimeOfCirculation(earth);
     }
 
     public void dispose(GLAutoDrawable glAutoDrawable) {

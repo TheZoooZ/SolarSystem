@@ -1,3 +1,5 @@
+import Models.CelestialObject;
+
 import javax.swing.*;
 
 public class JFrameObjects {
@@ -22,6 +24,10 @@ public class JFrameObjects {
         frame.add(TimeOfCirculationLabel);
         frame.add(RangeSlider);
         frame.add(RangeLabel);
+    }
+
+    public static void SetDefaultTimeOfCirculation(CelestialObject object) {
+        TimeOfCirculationSlider.setValue(object.TimeOfCirculation);
     }
 
     private static JLabel setLabel(int x, int y, String text) {
