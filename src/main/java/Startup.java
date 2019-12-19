@@ -28,7 +28,7 @@ public class Startup {
         profile = GLProfile.get(GLProfile.GL2);
         capabilities = new GLCapabilities(profile);
         glCanvas = new GLCanvas(capabilities);
-        glCanvas.setSize(640,640);
+        glCanvas.setSize(640, 640);
     }
 
     private static void initializeSwingWindow() {
@@ -48,14 +48,14 @@ public class Startup {
 
     private static void wrapCanvasToSwingWindow() {
         frame.getContentPane().add(glCanvas, BorderLayout.CENTER);
-        frame.setSize(640,640);
+        frame.setSize(640, 640);
         frame.setVisible(true);
     }
 
     private static void animateCanvas() {
         glCanvas.addGLEventListener(new EventListener());
         glCanvas.addMouseMotionListener(new MouseInput());
-        animator = new FPSAnimator(glCanvas,60);
+        animator = new FPSAnimator(glCanvas, 60);
         animator.start();
     }
 }

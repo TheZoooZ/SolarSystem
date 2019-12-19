@@ -1,5 +1,4 @@
 import Models.Coords;
-import com.jogamp.opengl.GL2;
 
 import java.util.Random;
 

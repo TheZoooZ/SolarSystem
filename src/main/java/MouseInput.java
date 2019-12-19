@@ -1,5 +1,3 @@
-import com.jogamp.newt.event.MouseListener;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 

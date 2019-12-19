@@ -13,7 +13,6 @@ public class EventListener implements GLEventListener {
     private CelestialObject earth = new Earth(0, 0, 0);
     private GLU gluSun;
     private GLU gluEarth;
-    private GLU gluCentralPoint;
     private GL2 glSun;
     private GL2 glEarth;
 
@@ -21,7 +20,6 @@ public class EventListener implements GLEventListener {
         centralPoint = glAutoDrawable.getGL().getGL2();
         gluSun = new GLU();
         gluEarth = new GLU();
-        gluCentralPoint = new GLU();
         glSun = glAutoDrawable.getGL().getGL2();
         glEarth = glAutoDrawable.getGL().getGL2();
     }
@@ -67,18 +65,18 @@ public class EventListener implements GLEventListener {
         JFrameObjects.TimeOfCirculationLabel.setText("ToC " + JFrameObjects.TimeOfCirculationSlider.getValue() + " s.");
     }
 
-    private void setCamera(GL2 gl, GLU glu, float distance) {
-        // Change to projection matrix.
-        gl.glMatrixMode(GL2.GL_PROJECTION);
-        gl.glLoadIdentity();
-
-        // Perspective.
-        float widthHeightRatio = 1;
-        glu.gluPerspective(45, widthHeightRatio, 1, 1000);
-        glu.gluLookAt(0, 0, distance, 0, 0, 0, 0, 1, 0);
-
-        // Change back to model view matrix.
-        gl.glMatrixMode(GL2.GL_MODELVIEW);
-        gl.glLoadIdentity();
-    }
+//    private void setCamera(GL2 gl, GLU glu, float distance) {
+//        // Change to projection matrix.
+//        gl.glMatrixMode(GL2.GL_PROJECTION);
+//        gl.glLoadIdentity();
+//
+//        // Perspective.
+//        float widthHeightRatio = 1;
+//        glu.gluPerspective(45, widthHeightRatio, 1, 1000);
+//        glu.gluLookAt(0, 0, distance, 0, 0, 0, 0, 1, 0);
+//
+//        // Change back to model view matrix.
+//        gl.glMatrixMode(GL2.GL_MODELVIEW);
+//        gl.glLoadIdentity();
+//    }
 }

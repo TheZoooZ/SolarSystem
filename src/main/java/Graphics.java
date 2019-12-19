@@ -7,12 +7,6 @@ import com.jogamp.opengl.glu.GLUquadric;
 public class Graphics {
     private static double angle = 0;
 
-    public static void drawCentralPoint(GL2 gl) {
-        gl.glBegin(GL2.GL_POINT);
-        gl.glVertex3d(0, 0, 0);
-        gl.glEnd();
-    }
-
     public static void drawSphere(GL2 gl2, GLU glu, CelestialObject object) {
         final int slices = 128;
         final int stacks = 128;
