@@ -1,26 +1,44 @@
 package Models;
 
-public abstract class CelestialObject {
-    private Coords StartCoords;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.glu.GLU;
 
+public class CelestialObject {
     public Coords Coords;
-    public double AngularVelocity;
-    public int TimeOfCirculation;
-    public int TimeOfRotation;
+    public double TimeOfCirculation;
+    public double TimeOfRotation;
     public int Radius;
-    public Color Color; //To delete in the future :)
+    public float[] Color; //To delete in the future :)
+    public double RadiusOfCirculation;
+    private double alpha = 0;
 
-    public CelestialObject(double angularVelocity, int periodOfCirculation, int periodOfRotation) {
-        this.AngularVelocity = angularVelocity;
+    public CelestialObject(
+            int periodOfCirculation,
+            int periodOfRotation,
+            Coords coords,
+            float[] color,
+            int radius) {
         this.TimeOfCirculation = periodOfCirculation;
         this.TimeOfRotation = periodOfRotation;
+        this.Coords = coords;
+        this.Color = color;
+        this.Radius = radius;
+
+        RadiusOfCirculation = CalculateRadius();
     }
 
-    public void setStartCoords(int x, int y, int z) {
-        StartCoords = new Coords(x, y, z);
+    public void Circulate() {
+        this.Coords.X = RadiusOfCirculation * Math.cos(alpha);
+        this.Coords.Y = RadiusOfCirculation * Math.sin(alpha);
+        alpha += (360.0 / (TimeOfCirculation * 100.0));
+        alpha %= 360;
     }
 
-    public Coords getStartCoords() {
-        return StartCoords;
+    public void Rotate(GLAutoDrawable gl, GLU glu){
+
+    }
+
+    private double CalculateRadius() {
+        return Math.sqrt(Math.pow(this.Coords.X, 2) + Math.pow(this.Coords.Y, 2) + Math.pow(this.Coords.Z, 2));
     }
 }

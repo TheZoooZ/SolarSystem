@@ -54,7 +54,8 @@ public class Startup {
 
     private static void animateCanvas() {
         glCanvas.addGLEventListener(new EventListener());
-        glCanvas.addMouseMotionListener(new MouseInput());
+        glCanvas.addMouseMotionListener(new MouseListener());
+        glCanvas.addMouseWheelListener(new MouseWheelListener());
         animator = new FPSAnimator(glCanvas, 60);
         animator.start();
     }
