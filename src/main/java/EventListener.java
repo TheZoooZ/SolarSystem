@@ -8,7 +8,7 @@ import com.jogamp.opengl.glu.GLU;
 public class EventListener implements GLEventListener {
     private CelestialObject sun = new CelestialObject(
             0,
-            0,
+            600,
             new Coords(0, 0, 0),
             20);
     private CelestialObject earth = new CelestialObject(
@@ -22,7 +22,6 @@ public class EventListener implements GLEventListener {
         JFrameObjects.SetDefaultTimeOfCirculation(earth);
         GL2 gl = glAutoDrawable.getGL().getGL2();
         this.glu = new GLU();
-
 
         gl.glColor3d(32, 138, 35);
 
@@ -45,8 +44,9 @@ public class EventListener implements GLEventListener {
         applyJFrameButtons();
 
         Graphics.drawBackground(gl);
-        Graphics.drawSphere(gl, glu, sun);
+        Graphics.drawPath(earth, gl);
         Graphics.drawSphere(gl, glu, earth);
+        Graphics.drawSphere(gl, glu, sun);
         earth.Circulate();
     }
 
@@ -76,12 +76,11 @@ public class EventListener implements GLEventListener {
         gl.glLoadIdentity();
 
         // Perspective.
-        float widthHeightRatio = 1;
-        glu.gluPerspective(45, widthHeightRatio, 0.1, 600);
+        glu.gluPerspective(45, 1, 0.1, 1200);
         glu.gluLookAt(
-                200, 200 + MouseWheelListener.getMouseWheelMovement(),
-                200, 0, 0,
-                0, 0, 0, 1);
+                200, 200 + MouseWheelListener.getMouseWheelMovement(), 200,
+                0, 0, 0,
+                0, 0, 1);
 
         // Change back to model view matrix.
         gl.glMatrixMode(GL2.GL_MODELVIEW);

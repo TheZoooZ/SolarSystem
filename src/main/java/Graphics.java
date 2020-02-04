@@ -3,8 +3,10 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.glu.GLUquadric;
 
+import static com.jogamp.opengl.GL.GL_LINE_SMOOTH;
+
 public class Graphics {
-//    private static double angle = 0;
+    private static float angle = 0;
 
     public static void drawSphere(GL2 gl, GLU glu, CelestialObject object) {
         final int slices = 128;
@@ -15,6 +17,8 @@ public class Graphics {
         gl.glLoadIdentity();
 
         gl.glTranslated(object.coords.X, object.coords.Y, object.coords.Z);
+        gl.glRotatef(angle, 0.0f, 0.0f, -1.0f); // Rotate planet
+        gl.glRotatef(90, 0.0f, 0.0f, 1.0f); // Correctly orient planet
 
         object.ApplyTexture(gl);
         GLUquadric sphere = glu.gluNewQuadric();
@@ -32,11 +36,12 @@ public class Graphics {
             gl.glDisable(GL2.GL_COLOR_MATERIAL);
             object.texture.disable(gl);
         }
+        rotate(object);
         gl.glPopMatrix();
     }
 
     public static void drawBackground(GL2 gl) {
-        gl.glColor3f(1f,1f,1f);
+        gl.glColor3f(1f, 1f, 1f);
         for (int i = 0; i < Globals.NumberOfPoints; i++) {
             gl.glPushMatrix();
             gl.glMatrixMode(GL2.GL_MODELVIEW);
@@ -49,15 +54,22 @@ public class Graphics {
         }
     }
 
-//    public static void rotate(CelestialObject object, GL2 gl) {
-//        double range = JFrameObjects.RangeSlider.getValue();
-//        object.Coords.X = (int) (range * Math.cos(angle));
-//        object.Coords.Y = (int) (range * Math.sin(angle));
-//        object.Coords.Z = 0;
-//
-//        gl.glFlush();
-//        gl.glPopMatrix();
-//
-//        angle = (angle + 0.15 * 1 / JFrameObjects.TimeOfCirculationSlider.getValue()) % 360;
-//    }
+    public static void drawPath(CelestialObject object, GL2 gl) {
+        double inc = Math.PI / 24;
+        double max = 2 * Math.PI;
+        gl.glEnable(GL_LINE_SMOOTH);
+        gl.glLineWidth(2f);
+
+        gl.glBegin(GL2.GL_LINE_LOOP);
+        gl.glColor3f(1.0f, 1.0f, 1.0f);
+
+        for (double d = 0; d < max; d += inc) {
+            gl.glVertex3d(Math.sin(d) * object.radiusOfCirculation, Math.cos(d) * object.radiusOfCirculation, 0);
+        }
+        gl.glEnd();
+    }
+
+    private static void rotate(CelestialObject object) {
+        angle = (angle + 100f / (float) object.timeOfRotation) % 360;
+    }
 }

@@ -9,19 +9,16 @@ class JFrameObjects {
     static JSlider timeOfRotationSlider;
     static JLabel timeOfRotationLabel;
     static JSlider radiusSlider;
-    static JButton timeFreezeButton;
 
     static void addToolbars(JFrame frame) {
         timeOfCirculationLabel = setLabel(0, 0, "ToC 365 d.");
         timeOfCirculationSlider = setSlider(0, 30, 200, 400);
 
-        radiusLabel = setLabel(0, 80, "Radius 149.6 M. km");
-        radiusSlider = setSlider(0, 110, 50, 200);
+        radiusLabel = setLabel(120, 0, "Radius 149.6 M. km");
+        radiusSlider = setSlider(120, 30, 50, 200);
 
-        timeOfRotationLabel = setLabel(0,160, "ToR 24 h.");
-        timeOfRotationSlider = setSlider(0,190,4,48);
-
-        timeFreezeButton = setButton(120, 0);
+        timeOfRotationLabel = setLabel(240,0, "ToR 24 h.");
+        timeOfRotationSlider = setSlider(240,30,4,48);
 
         frame.add(timeOfCirculationSlider);
         frame.add(timeOfCirculationLabel);
@@ -29,7 +26,6 @@ class JFrameObjects {
         frame.add(radiusLabel);
         frame.add(timeOfRotationLabel);
         frame.add(timeOfRotationSlider);
-        frame.add(timeFreezeButton);
     }
 
     static void SetDefaultTimeOfCirculation(CelestialObject object) {
