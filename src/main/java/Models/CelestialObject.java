@@ -8,34 +8,31 @@ import java.io.File;
 import java.io.IOException;
 
 public class CelestialObject {
-    public Coords Coords;
-    public double TimeOfCirculation;
-    public double TimeOfRotation;
-    public int Radius;
-    public float[] Color; //To delete in the future :)
-    public double RadiusOfCirculation;
+    public Coords coords;
+    public double timeOfCirculation;
+    public double timeOfRotation;
+    public int radius;
+    public double radiusOfCirculation;
+    public Texture texture;
 
-    private Texture Texture;
     private double alpha = 0;
 
     public CelestialObject(
             int periodOfCirculation,
             int periodOfRotation,
             Coords coords,
-            float[] color,
             int radius) {
-        this.TimeOfCirculation = periodOfCirculation;
-        this.TimeOfRotation = periodOfRotation;
-        this.Coords = coords;
-        this.Color = color;
-        this.Radius = radius;
+        this.timeOfCirculation = periodOfCirculation;
+        this.timeOfRotation = periodOfRotation;
+        this.coords = coords;
+        this.radius = radius;
 
-        RadiusOfCirculation = CalculateRadius();
+        radiusOfCirculation = CalculateRadius();
     }
 
     public boolean TryLoadTexture(String path) {
         try {
-            Texture = TextureIO.newTexture(new File(path), true);
+            texture = TextureIO.newTexture(new File(path), true);
             return true;
         } catch (IOException e) {
             return false;
@@ -43,22 +40,22 @@ public class CelestialObject {
     }
 
     public void Circulate() {
-        this.Coords.X = RadiusOfCirculation * Math.cos(alpha);
-        this.Coords.Y = RadiusOfCirculation * Math.sin(alpha);
-        alpha += (360.0 / (TimeOfCirculation * 100.0));
+        this.coords.X = radiusOfCirculation * Math.cos(alpha);
+        this.coords.Y = radiusOfCirculation * Math.sin(alpha);
+        alpha += (360.0 / (timeOfCirculation * 100.0));
         alpha %= 360;
     }
 
     public void ApplyTexture(GL2 gl) {
-        if (Texture != null) {
-            Texture.enable(gl);
-            Texture.bind(gl);
+        if (texture != null) {
+            texture.enable(gl);
+            texture.bind(gl);
         } else {
             System.out.println("Texture not loaded");
         }
     }
 
     private double CalculateRadius() {
-        return Math.sqrt(Math.pow(this.Coords.X, 2) + Math.pow(this.Coords.Y, 2) + Math.pow(this.Coords.Z, 2));
+        return Math.sqrt(Math.pow(this.coords.X, 2) + Math.pow(this.coords.Y, 2) + Math.pow(this.coords.Z, 2));
     }
 }

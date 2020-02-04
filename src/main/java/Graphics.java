@@ -14,20 +14,24 @@ public class Graphics {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
 
-        gl.glTranslated(object.Coords.X, object.Coords.Y, object.Coords.Z);
+        gl.glTranslated(object.coords.X, object.coords.Y, object.coords.Z);
 
         object.ApplyTexture(gl);
-        gl.glColor3f(object.Color[0],object.Color[1],object.Color[2]);
         GLUquadric sphere = glu.gluNewQuadric();
 
+        glu.gluQuadricTexture(sphere, true);
         glu.gluQuadricDrawStyle(sphere, GLU.GLU_FILL);
         glu.gluQuadricNormals(sphere, GLU.GLU_FLAT);
         glu.gluQuadricOrientation(sphere, GLU.GLU_OUTSIDE);
 
-        glu.gluSphere(sphere, object.Radius, slices, stacks);
+        glu.gluSphere(sphere, object.radius, slices, stacks);
 
         glu.gluDeleteQuadric(sphere);
         gl.glEnd();
+        if (object.texture != null) {
+            gl.glDisable(GL2.GL_COLOR_MATERIAL);
+            object.texture.disable(gl);
+        }
         gl.glPopMatrix();
     }
 

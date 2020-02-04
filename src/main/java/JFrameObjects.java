@@ -3,37 +3,37 @@ import Models.CelestialObject;
 import javax.swing.*;
 
 class JFrameObjects {
-    static JLabel TimeOfCirculationLabel;
-    static JLabel RadiusLabel;
-    static JSlider TimeOfCirculationSlider;
-    static JSlider TimeOfRotationSlider;
-    static JLabel TimeOfRotationLabel;
-    static JSlider RadiusSlider;
-    static JButton TimeFreezeButton;
+    static JLabel timeOfCirculationLabel;
+    static JLabel radiusLabel;
+    static JSlider timeOfCirculationSlider;
+    static JSlider timeOfRotationSlider;
+    static JLabel timeOfRotationLabel;
+    static JSlider radiusSlider;
+    static JButton timeFreezeButton;
 
     static void addToolbars(JFrame frame) {
-        TimeOfCirculationLabel = setLabel(0, 0, "ToC 365 d.");
-        TimeOfCirculationSlider = setSlider(0, 30, 200, 400);
+        timeOfCirculationLabel = setLabel(0, 0, "ToC 365 d.");
+        timeOfCirculationSlider = setSlider(0, 30, 200, 400);
 
-        RadiusLabel = setLabel(0, 80, "Radius 149.6 M. km");
-        RadiusSlider = setSlider(0, 110, 50, 200);
+        radiusLabel = setLabel(0, 80, "Radius 149.6 M. km");
+        radiusSlider = setSlider(0, 110, 50, 200);
 
-        TimeOfRotationLabel = setLabel(0,160, "ToR 24 h.");
-        TimeOfRotationSlider = setSlider(0,190,4,48);
+        timeOfRotationLabel = setLabel(0,160, "ToR 24 h.");
+        timeOfRotationSlider = setSlider(0,190,4,48);
 
-        TimeFreezeButton = setButton(120, 0);
+        timeFreezeButton = setButton(120, 0);
 
-        frame.add(TimeOfCirculationSlider);
-        frame.add(TimeOfCirculationLabel);
-        frame.add(RadiusSlider);
-        frame.add(RadiusLabel);
-        frame.add(TimeOfRotationLabel);
-        frame.add(TimeOfRotationSlider);
-        frame.add(TimeFreezeButton);
+        frame.add(timeOfCirculationSlider);
+        frame.add(timeOfCirculationLabel);
+        frame.add(radiusSlider);
+        frame.add(radiusLabel);
+        frame.add(timeOfRotationLabel);
+        frame.add(timeOfRotationSlider);
+        frame.add(timeFreezeButton);
     }
 
     static void SetDefaultTimeOfCirculation(CelestialObject object) {
-        TimeOfCirculationSlider.setValue((int) object.TimeOfCirculation);
+        timeOfCirculationSlider.setValue((int) object.timeOfCirculation);
     }
 
     private static JLabel setLabel(int x, int y, String text) {

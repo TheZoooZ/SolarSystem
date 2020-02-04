@@ -10,13 +10,11 @@ public class EventListener implements GLEventListener {
             0,
             0,
             new Coords(0, 0, 0),
-            new float[]{245f, 240f, 0f},
             20);
     private CelestialObject earth = new CelestialObject(
             365,
             24,
             new Coords(149.6, 0, 0),
-            new float[]{1f, 0f, 0f},
             5);
     private GLU glu;
 
@@ -25,13 +23,15 @@ public class EventListener implements GLEventListener {
         GL2 gl = glAutoDrawable.getGL().getGL2();
         this.glu = new GLU();
 
+
         gl.glColor3d(32, 138, 35);
 
         earth.TryLoadTexture("C:\\Users\\tfala\\Desktop\\Java_Project_PlanetSystem_Falarz\\Textures\\earth.png");
+        sun.TryLoadTexture("C:\\Users\\tfala\\Desktop\\Java_Project_PlanetSystem_Falarz\\Textures\\sun.png");
 
-        JFrameObjects.RadiusSlider.setValue((int) earth.RadiusOfCirculation);
-        JFrameObjects.TimeOfCirculationSlider.setValue((int) earth.TimeOfCirculation);
-        JFrameObjects.TimeOfRotationSlider.setValue((int) earth.TimeOfRotation);
+        JFrameObjects.radiusSlider.setValue((int) earth.radiusOfCirculation);
+        JFrameObjects.timeOfCirculationSlider.setValue((int) earth.timeOfCirculation);
+        JFrameObjects.timeOfRotationSlider.setValue((int) earth.timeOfRotation);
     }
 
     public void dispose(GLAutoDrawable glAutoDrawable) {
@@ -41,7 +41,6 @@ public class EventListener implements GLEventListener {
         GL2 gl = glAutoDrawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
 
-        gl.glColor3f(1f,0f,0f);
         setCamera(gl, glu);
         applyJFrameButtons();
 
@@ -59,16 +58,16 @@ public class EventListener implements GLEventListener {
     }
 
     private void applyJFrameButtons() {
-        if (JFrameObjects.RadiusSlider.hasFocus())
-            earth.RadiusOfCirculation = JFrameObjects.RadiusSlider.getValue();
-        if (JFrameObjects.TimeOfRotationSlider.hasFocus())
-            earth.TimeOfRotation = JFrameObjects.TimeOfRotationSlider.getValue();
-        if (JFrameObjects.TimeOfCirculationSlider.hasFocus())
-            earth.TimeOfCirculation = JFrameObjects.TimeOfCirculationSlider.getValue();
+        if (JFrameObjects.radiusSlider.hasFocus())
+            earth.radiusOfCirculation = JFrameObjects.radiusSlider.getValue();
+        if (JFrameObjects.timeOfRotationSlider.hasFocus())
+            earth.timeOfRotation = JFrameObjects.timeOfRotationSlider.getValue();
+        if (JFrameObjects.timeOfCirculationSlider.hasFocus())
+            earth.timeOfCirculation = JFrameObjects.timeOfCirculationSlider.getValue();
 
-        JFrameObjects.TimeOfCirculationLabel.setText("ToC " + JFrameObjects.TimeOfCirculationSlider.getValue() + " d.");
-        JFrameObjects.TimeOfRotationLabel.setText("ToR " + JFrameObjects.TimeOfRotationSlider.getValue() + " h.");
-        JFrameObjects.RadiusLabel.setText("Radius " + JFrameObjects.RadiusSlider.getValue() + " M. km");
+        JFrameObjects.timeOfCirculationLabel.setText("ToC " + JFrameObjects.timeOfCirculationSlider.getValue() + " d.");
+        JFrameObjects.timeOfRotationLabel.setText("ToR " + JFrameObjects.timeOfRotationSlider.getValue() + " h.");
+        JFrameObjects.radiusLabel.setText("Radius " + JFrameObjects.radiusSlider.getValue() + " M. km");
     }
 
     private void setCamera(GL2 gl, GLU glu) {
