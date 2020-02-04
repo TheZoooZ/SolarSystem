@@ -1,5 +1,4 @@
 import Models.CelestialObject;
-import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.glu.GLUquadric;
@@ -15,9 +14,10 @@ public class Graphics {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
 
-        gl.glColor3f(object.Color[0], object.Color[1], object.Color[2]);
         gl.glTranslated(object.Coords.X, object.Coords.Y, object.Coords.Z);
 
+        object.ApplyTexture(gl);
+        gl.glColor3f(object.Color[0],object.Color[1],object.Color[2]);
         GLUquadric sphere = glu.gluNewQuadric();
 
         glu.gluQuadricDrawStyle(sphere, GLU.GLU_FILL);
@@ -28,22 +28,20 @@ public class Graphics {
 
         glu.gluDeleteQuadric(sphere);
         gl.glEnd();
-        gl.glFlush();
         gl.glPopMatrix();
     }
 
     public static void drawBackground(GL2 gl) {
+        gl.glColor3f(1f,1f,1f);
         for (int i = 0; i < Globals.NumberOfPoints; i++) {
             gl.glPushMatrix();
             gl.glMatrixMode(GL2.GL_MODELVIEW);
             gl.glLoadIdentity();
 
-            gl.glColor3f(255, 250, 250);
             gl.glBegin(GL2.GL_POINTS);
             gl.glVertex3d(Globals.starsCoords[i].X, Globals.starsCoords[i].Y, Globals.starsCoords[i].Z);
             gl.glEnd();
-            gl.glFlush();
-            gl.glPushMatrix();
+            gl.glPopMatrix();
         }
     }
 
