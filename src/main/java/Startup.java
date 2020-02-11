@@ -1,17 +1,12 @@
-import Models.CelestialObject;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
-import com.jogamp.opengl.util.texture.TextureIO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class Startup {
     private static GLProfile profile;
@@ -59,23 +54,8 @@ public class Startup {
 
     private static void animateCanvas() {
         glCanvas.addGLEventListener(new EventListener());
-        glCanvas.addMouseMotionListener(new MouseListener());
         glCanvas.addMouseWheelListener(new MouseWheelListener());
         animator = new FPSAnimator(glCanvas, 60);
         animator.start();
     }
-
-//    public boolean TryLoadTexture(String path) {
-//        try {
-//            String location = CelestialObject.class.getProtectionDomain().getCodeSource().getLocation()
-//                    .toURI().getPath();
-//            texture = TextureIO.newTexture(new File(location +"/"+ path), true);
-//            return true;
-//        } catch (IOException e) {
-//            return false;
-//        }
-//        catch (URISyntaxException e){
-//            return false;
-//        }
-//    }
 }

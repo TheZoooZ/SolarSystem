@@ -1,7 +1,10 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Java_Project_PlanetSystem_Falarz:jar">
-    <output-path>$PROJECT_DIR$/JAR</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/Java_Project_PlanetSystem_Falarz_jar</output-path>
     <root id="archive" name="Java_Project_PlanetSystem_Falarz.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="Java_Project_PlanetSystem_Falarz" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jogamp/jocl/jocl/2.3.2/jocl-2.3.2-natives-linux-armv6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jogamp/jogl/jogl-all/2.3.2/jogl-all-2.3.2-natives-linux-i586.jar" path-in-jar="/" />
@@ -43,6 +46,8 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jogamp/jocl/jocl-main/2.3.2/jocl-main-2.3.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jogamp/gluegen/gluegen-rt/2.3.2/gluegen-rt-2.3.2-natives-linux-i586.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jogamp/gluegen/gluegen-rt/2.3.2/gluegen-rt-2.3.2-natives-android-aarch64.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/target/classes/earth.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/target/classes/sun.png" />
     </root>
   </artifact>
 </component>
