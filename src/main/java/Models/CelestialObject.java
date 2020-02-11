@@ -6,6 +6,7 @@ import com.jogamp.opengl.util.texture.TextureIO;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class CelestialObject {
     public Coords coords;
@@ -30,11 +31,15 @@ public class CelestialObject {
         radiusOfCirculation = CalculateRadius();
     }
 
-    public boolean TryLoadTexture(String path) {
+    public boolean TryLoadTexture(String fileName) {
         try {
-            texture = TextureIO.newTexture(new File(path), true);
+            String location = CelestialObject.class.getProtectionDomain().getCodeSource().getLocation()
+                    .toURI().getPath();
+            texture = TextureIO.newTexture(new File(location + fileName), true);
             return true;
         } catch (IOException e) {
+            return false;
+        } catch (URISyntaxException e) {
             return false;
         }
     }

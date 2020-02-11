@@ -25,8 +25,8 @@ public class EventListener implements GLEventListener {
 
         gl.glColor3d(32, 138, 35);
 
-        earth.TryLoadTexture("C:\\Users\\tfala\\Desktop\\Java_Project_PlanetSystem_Falarz\\Textures\\earth.png");
-        sun.TryLoadTexture("C:\\Users\\tfala\\Desktop\\Java_Project_PlanetSystem_Falarz\\Textures\\sun.png");
+        earth.TryLoadTexture("earth.png");
+        sun.TryLoadTexture("sun.png");
 
         JFrameObjects.radiusSlider.setValue((int) earth.radiusOfCirculation);
         JFrameObjects.timeOfCirculationSlider.setValue((int) earth.timeOfCirculation);
